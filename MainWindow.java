@@ -63,12 +63,11 @@ class MainWindow extends JFrame{
 
 		panel1.add(panel2, BorderLayout.CENTER);
 
-		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 		btnExit = new JButton("Exit");
 		btnExit.setFont(new Font("Arial", Font.BOLD, 14));
 		btnExit.setForeground(Color.BLUE);
-		btnExit.setHorizontalAlignment(JButton.CENTER);
 		panel3.add(btnExit);
 
 		panel1.add(panel3, BorderLayout.SOUTH);
