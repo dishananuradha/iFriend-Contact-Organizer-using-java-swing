@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 class MainWindow extends JFrame{
 	private JButton btnAddContact;
@@ -8,6 +9,8 @@ class MainWindow extends JFrame{
 	private JButton btnDeleteContact;
 	private JButton btnViewContacts;
 	private JButton btnExit;
+
+	//private AddContacts addContacts;
 	
 	public MainWindow(){
 		setTitle("iFriend Contact Manager");
@@ -22,6 +25,7 @@ class MainWindow extends JFrame{
 		add(lblTitle, BorderLayout.WEST);
 
 		JPanel panel1 = new JPanel(new BorderLayout());
+		add(panel1, BorderLayout.EAST);
 
 		JLabel lblHome = new JLabel("Home Page");
 		lblHome.setFont(new Font("Arial", Font.BOLD, 18));
@@ -30,11 +34,20 @@ class MainWindow extends JFrame{
 		panel1.add(lblHome, BorderLayout.NORTH);
 
 		JPanel panel2 = new JPanel(new GridLayout(5, 1, 5, 5));
+		panel1.add(panel2, BorderLayout.CENTER);
 
 		btnAddContact = new JButton("Add New Contact");
 		btnAddContact.setFont(new Font("Arial", Font.BOLD, 14));
 		btnAddContact.setForeground(Color.BLUE);
 		btnAddContact.setHorizontalAlignment(JButton.CENTER);
+		btnAddContact.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent evt){
+				/*if(addContacts==null){
+					addContacts=new AddContacts();
+				}*/
+				new AddContacts().setVisible(true);
+			}
+		});
 		panel2.add(btnAddContact);
 
 		btnUpdateContact = new JButton("Update Contact");
@@ -61,17 +74,12 @@ class MainWindow extends JFrame{
 		btnViewContacts.setHorizontalAlignment(JButton.CENTER);
 		panel2.add(btnViewContacts);
 
-		panel1.add(panel2, BorderLayout.CENTER);
-
-		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		panel1.add(panel3, BorderLayout.SOUTH);
 
 		btnExit = new JButton("Exit");
 		btnExit.setFont(new Font("Arial", Font.BOLD, 14));
 		btnExit.setForeground(Color.BLUE);
 		panel3.add(btnExit);
-
-		panel1.add(panel3, BorderLayout.SOUTH);
-
-		add(panel1, BorderLayout.EAST);
 	}
 }
