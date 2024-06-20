@@ -4,6 +4,12 @@ import java.util.regex.Pattern;
 
 class ContactController {
     public static int idCount = 0;
+    public static ContactList contactList = DBConnection.getInstance().getContactList();
+
+    public static void addContact(Contact contact) {
+        contactList.add(contact);
+    }        
+
     //-------------------check validity of the name----------------------//
     public static boolean isValidName(String name) {
 		return name.length() != 0; 
@@ -41,7 +47,6 @@ class ContactController {
     }
 
     public static boolean isDuplicate(String phoneNumber) {
-        ContactList contactList = DBConnection.getInstance().getContactList();
         return contactList.isDuplicate(phoneNumber);
     }
 
