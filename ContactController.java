@@ -6,6 +6,7 @@ class ContactController {
     public static int idCount = 0;
     public static ContactList contactList = DBConnection.getInstance().getContactList();
 
+    //-------------------add contact----------------------//
     public static void addContact(Contact contact) {
         contactList.add(contact);
     }        
@@ -46,6 +47,7 @@ class ContactController {
         }
     }
 
+    //-------------------is duplicate phone number----------------------//
     public static boolean isDuplicate(String phoneNumber) {
         return contactList.isDuplicate(phoneNumber);
     }
