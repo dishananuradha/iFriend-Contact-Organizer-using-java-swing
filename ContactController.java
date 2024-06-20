@@ -40,6 +40,11 @@ class ContactController {
         }
     }
 
+    public static boolean isDuplicate(String phoneNumber) {
+        ContactList contactList = DBConnection.getInstance().getContactList();
+        return contactList.isDuplicate(phoneNumber);
+    }
+
     //-------------------generate contact ids----------------------//
 	public static String generateContactId() {
         idCount++;
