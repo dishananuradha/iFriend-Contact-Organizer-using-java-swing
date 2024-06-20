@@ -50,23 +50,36 @@ class AddContacts extends JFrame{
             lblName.setForeground(Color.BLUE);
             lblName.setHorizontalAlignment(JLabel.LEFT);
             panel2.add(lblName);
-
+            
             txtName = new JTextField();
             txtName.setFont(new Font("Arial", Font.PLAIN, 14));
             txtName.setForeground(Color.BLACK);
             txtName.setHorizontalAlignment(JTextField.LEFT);
-            txtName.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent evt){
+            txtName.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
                     String name = txtName.getText();
-                    while(!ContactController.isValidName(name)){
-                        int option = JOptionPane.showConfirmDialog(AddContacts.this, "Name cannot be empty. Do you want to input name again?", "Invalid Name", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                        if(option == JOptionPane.YES_OPTION){
-                            txtName.requestFocus();
-                        }else{
+                    if (ContactController.isValidName(name)) {
+                        txtContactNumber.requestFocus(); // Move focus to the next text field
+                    } else {
+                        int option = JOptionPane.showConfirmDialog(
+                            AddContacts.this,
+                            "Name cannot be empty or invalid. Do you want to input the name again?",
+                            "Invalid Name",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                        if (option == JOptionPane.YES_OPTION) {
+                            txtName.setText(""); // Clear the text field
+                            txtName.requestFocus(); // Request focus to the text field
+                        } else {
                             ContactController.idCount--;
-                            dispose();
+                            txtName.setText("");
+                            txtContactNumber.setText("");
+                            txtCompanyName.setText("");
+                            txtSalary.setText("");
+                            txtBirthDay.setText("");
+                            dispose(); // Close the window
                         }
-                        name = txtName.getText();
                     }
                 }
             });
@@ -82,35 +95,63 @@ class AddContacts extends JFrame{
             txtContactNumber.setFont(new Font("Arial", Font.PLAIN, 14));
             txtContactNumber.setForeground(Color.BLACK);
             txtContactNumber.setHorizontalAlignment(JTextField.LEFT);
-            txtContactNumber.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent evt){
+            txtContactNumber.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
                     String phoneNumber = txtContactNumber.getText();
-                    while(!ContactController.isValidPhoneNumber(phoneNumber)){
-                        int option = JOptionPane.showConfirmDialog(AddContacts.this, "Invalid phone number. Do you want to input phone number again?", "Invalid Phone Number", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                        if(option == JOptionPane.YES_OPTION){
+
+                    // Check if the phone number is valid
+                    if (!ContactController.isValidPhoneNumber(phoneNumber)) {
+                        int option = JOptionPane.showConfirmDialog(
+                            AddContacts.this,
+                            "Invalid phone number. Do you want to input phone number again?",
+                            "Invalid Phone Number",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                        if (option == JOptionPane.YES_OPTION) {
                             txtContactNumber.setText("");
-                            txtContactNumber.requestFocus();
-                        }else{
+                            txtContactNumber.requestFocus(); // Request focus to let user re-enter
+                        } else {
                             ContactController.idCount--;
-                            dispose();
+                            txtName.setText("");
+                            txtContactNumber.setText("");
+                            txtCompanyName.setText("");
+                            txtSalary.setText("");
+                            txtBirthDay.setText("");
+                            dispose(); // Close the window
                         }
-                        phoneNumber = txtContactNumber.getText();
+                        return; // Exit the actionPerformed method
                     }
 
-                    while(ContactController.isDuplicate(phoneNumber)){
-                        int option = JOptionPane.showConfirmDialog(AddContacts.this, "Phone number already exists. Do you want to input phone number again?", "Duplicate Phone Number", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                        if(option == JOptionPane.YES_OPTION){
+                    // Check if the phone number is a duplicate
+                    if (ContactController.isDuplicate(phoneNumber)) {
+                        int option = JOptionPane.showConfirmDialog(
+                            AddContacts.this,
+                            "Phone number is a duplicate. Do you want to input phone number again?",
+                            "Duplicate Phone Number",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                        if (option == JOptionPane.YES_OPTION) {
                             txtContactNumber.setText("");
-                            txtContactNumber.requestFocus();
-                        }else{
+                            txtContactNumber.requestFocus(); // Request focus to let user re-enter
+                        } else {
                             ContactController.idCount--;
-                            dispose();
+                            txtContactNumber.setText("");
+                            txtCompanyName.setText("");
+                            txtSalary.setText("");
+                            txtBirthDay.setText("");
+                            dispose(); // Close the window
                         }
-                        phoneNumber = txtContactNumber.getText();
+                        return; // Exit the actionPerformed method
                     }
+
+                    // If the phone number is valid and not a duplicate, move focus to the next text field
+                    txtCompanyName.requestFocus();
                 }
             });
             panel2.add(txtContactNumber);
+        
 
             JLabel lblCompanyName = new JLabel("Company Name");
             lblCompanyName.setFont(new Font("Arial", Font.BOLD, 14));
@@ -122,6 +163,34 @@ class AddContacts extends JFrame{
             txtCompanyName.setFont(new Font("Arial", Font.PLAIN, 14));
             txtCompanyName.setForeground(Color.BLACK);
             txtCompanyName.setHorizontalAlignment(JTextField.LEFT);
+            txtCompanyName.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    String companyName = txtCompanyName.getText();
+                    if (ContactController.isValidCompanyName(companyName)) {
+                        txtSalary.requestFocus(); // Move focus to the next text field
+                    } else {
+                        int option = JOptionPane.showConfirmDialog(
+                            AddContacts.this,
+                            "Company name cannot be empty or invalid. Do you want to input the company name again?",
+                            "Invalid Company Name",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                        if (option == JOptionPane.YES_OPTION) {
+                            txtCompanyName.setText(""); // Clear the text field
+                            txtCompanyName.requestFocus(); // Request focus to the text field
+                        } else {
+                            ContactController.idCount--;
+                            txtName.setText("");
+                            txtContactNumber.setText("");
+                            txtCompanyName.setText("");
+                            txtSalary.setText("");
+                            txtBirthDay.setText("");
+                            dispose(); // Close the window
+                        }
+                    }
+                }
+            });
             panel2.add(txtCompanyName);
 
             JLabel lblSalary = new JLabel("Salary");
@@ -134,6 +203,34 @@ class AddContacts extends JFrame{
             txtSalary.setFont(new Font("Arial", Font.PLAIN, 14));
             txtSalary.setForeground(Color.BLACK);
             txtSalary.setHorizontalAlignment(JTextField.LEFT);
+            txtSalary.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    double salary = Double.parseDouble(txtSalary.getText());
+                    if (ContactController.isValidSalary(salary)) {
+                        txtBirthDay.requestFocus(); // Move focus to the next text field
+                    } else {
+                        int option = JOptionPane.showConfirmDialog(
+                            AddContacts.this,
+                            "Salary cannot be negative. Do you want to input salary again?",
+                            "Invalid Salary",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                        if (option == JOptionPane.YES_OPTION) {
+                            txtSalary.setText("");
+                            txtSalary.requestFocus(); // Request focus to let user re-enter
+                        } else {
+                            ContactController.idCount--;
+                            txtName.setText("");
+                            txtContactNumber.setText("");
+                            txtCompanyName.setText("");
+                            txtSalary.setText("");
+                            txtBirthDay.setText("");
+                            dispose(); // Close the window
+                        }
+                    }
+                }
+            });
             panel2.add(txtSalary);
 
             JLabel lblBirthDay = new JLabel("Birth Day");
@@ -146,6 +243,34 @@ class AddContacts extends JFrame{
             txtBirthDay.setFont(new Font("Arial", Font.PLAIN, 14));
             txtBirthDay.setForeground(Color.BLACK);
             txtBirthDay.setHorizontalAlignment(JTextField.LEFT);
+            txtBirthDay.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    String birthDay = txtBirthDay.getText();
+                    if (ContactController.isValidBirthDay(birthDay)) {
+                        btnAdd.requestFocus(); // Move focus to the Add button
+                    } else {
+                        int option = JOptionPane.showConfirmDialog(
+                            AddContacts.this,
+                            "Invalid birth day. Do you want to input birth day again?",
+                            "Invalid Birth Day",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                        if (option == JOptionPane.YES_OPTION) {
+                            txtBirthDay.setText(""); // Clear the text field
+                            txtBirthDay.requestFocus(); // Request focus to the text field
+                        } else {
+                            ContactController.idCount--;
+                            txtName.setText("");
+                            txtContactNumber.setText("");
+                            txtCompanyName.setText("");
+                            txtSalary.setText("");
+                            txtBirthDay.setText("");
+                            dispose(); // Close the window
+                        }
+                    }
+                }
+            });
             panel2.add(txtBirthDay);    
 
         add(panel2, BorderLayout.CENTER);
