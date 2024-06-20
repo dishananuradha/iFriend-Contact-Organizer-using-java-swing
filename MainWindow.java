@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.event.*;
 
 class MainWindow extends JFrame{
@@ -19,21 +21,30 @@ class MainWindow extends JFrame{
 		setLocationRelativeTo(null);
 
 		JLabel lblTitle = new JLabel("iFriend Contact Manager");
-		lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
-		lblTitle.setForeground(Color.BLUE);
-		lblTitle.setHorizontalAlignment(JLabel.CENTER);
 
-		add(lblTitle, BorderLayout.WEST);
+			lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
+			lblTitle.setForeground(Color.BLACK);
+			lblTitle.setBorder(new EmptyBorder(20, 20, 20, 20));
+			lblTitle.setHorizontalAlignment(JLabel.CENTER);
 
-		JPanel panel1 = new JPanel(new GridLayout(3, 1, 5, 5));
+		add(lblTitle, BorderLayout.NORTH);
+
+		JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout(10, 10));
+        mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 			JLabel lblHome = new JLabel("Home Page");
-			lblHome.setFont(new Font("Arial", Font.BOLD, 18));
-			lblHome.setForeground(Color.BLUE);
-			lblHome.setHorizontalAlignment(JLabel.CENTER);
-			panel1.add(lblHome);
 
-			JPanel panel2 = new JPanel(new GridLayout(5, 1,5, 5));
+				lblHome.setFont(new Font("Arial", Font.BOLD, 18));
+				lblHome.setForeground(Color.BLUE);
+				lblHome.setHorizontalAlignment(JLabel.CENTER);
+				lblHome.setBorder(new EmptyBorder(10, 0, 10, 0));
+
+        	mainPanel.add(lblHome, BorderLayout.NORTH);
+
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
+			buttonPanel.setBorder(new EmptyBorder(0, 60, 0, 60));
 
 				btnAddContact = new JButton("Add New Contact");
 				btnAddContact.setFont(new Font("Arial", Font.BOLD, 14));
@@ -42,48 +53,55 @@ class MainWindow extends JFrame{
 				btnAddContact.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent evt){
 						if(addContacts==null){
-							addContacts=new AddContacts();
+							addContacts=new AddContacts(MainWindow.this);
 						}
 						addContacts.setVisible(true);
 					}
 				});
-				panel2.add(btnAddContact);
+				buttonPanel.add(btnAddContact);
 
 				btnUpdateContact = new JButton("Update Contact");
 				btnUpdateContact.setFont(new Font("Arial", Font.BOLD, 14));
 				btnUpdateContact.setForeground(Color.BLUE);
 				btnUpdateContact.setHorizontalAlignment(JButton.CENTER);
-				panel2.add(btnUpdateContact);
+				buttonPanel.add(btnUpdateContact);
 
 				btnSearchContact = new JButton("Search Contact");
 				btnSearchContact.setFont(new Font("Arial", Font.BOLD, 14));
 				btnSearchContact.setForeground(Color.BLUE);
 				btnSearchContact.setHorizontalAlignment(JButton.CENTER);
-				panel2.add(btnSearchContact);
+				buttonPanel.add(btnSearchContact);
 
 				btnDeleteContact = new JButton("Delete Contact");
 				btnDeleteContact.setFont(new Font("Arial", Font.BOLD, 14));
 				btnDeleteContact.setForeground(Color.BLUE);
 				btnDeleteContact.setHorizontalAlignment(JButton.CENTER);
-				panel2.add(btnDeleteContact);
+				buttonPanel.add(btnDeleteContact);
 
 				btnViewContacts = new JButton("View Contacts");
 				btnViewContacts.setFont(new Font("Arial", Font.BOLD, 14));
 				btnViewContacts.setForeground(Color.BLUE);
 				btnViewContacts.setHorizontalAlignment(JButton.CENTER);
-				panel2.add(btnViewContacts);
+				buttonPanel.add(btnViewContacts);
 
-			panel1.add(panel2);
+			mainPanel.add(buttonPanel, BorderLayout.CENTER);
 
-			JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			JPanel exitPanel = new JPanel();
+			exitPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			exitPanel.setBorder(new EmptyBorder(10, 0, 0, 55));
 
 				btnExit = new JButton("Exit");
 				btnExit.setFont(new Font("Arial", Font.BOLD, 14));
-				btnExit.setForeground(Color.BLUE);
-				panel3.add(btnExit);
+				btnExit.setForeground(Color.RED);
+				btnExit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.exit(0);
+					}
+				});
+				exitPanel.add(btnExit);
 
-			panel1.add(panel3);
+			mainPanel.add(exitPanel, BorderLayout.SOUTH);
 
-		add(panel1, BorderLayout.EAST);
+		add(mainPanel, BorderLayout.CENTER);
 	}
 }

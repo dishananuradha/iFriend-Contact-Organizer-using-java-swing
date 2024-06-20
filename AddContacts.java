@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 
 class AddContacts extends JFrame{
@@ -12,13 +14,17 @@ class AddContacts extends JFrame{
     private JButton btnCancel;
     private JButton btnBackToHome;
 
-    public AddContacts(){
+    public AddContacts(JFrame parent){
         setTitle("Add Contact");
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
+        int xOffset = -400;
+        int yOffset = 100;
+        Point parentLocation = parent.getLocation();
+        setLocation(parentLocation.x + parent.getWidth() + xOffset, parentLocation.y + yOffset);
 
         JPanel panel1 = new JPanel(new GridLayout(2, 1, 5, 5));
+        panel1.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             JLabel lblTitle = new JLabel("Add Contact");
             lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
@@ -27,14 +33,16 @@ class AddContacts extends JFrame{
             panel1.add(lblTitle);
 
             JLabel lblContactId = new JLabel("Contact Id - " + ContactController.generateContactId());
-            lblContactId.setFont(new Font("Arial", Font.BOLD, 20));
-            lblContactId.setForeground(Color.BLACK);
+            lblContactId.setFont(new Font("Arial", Font.BOLD, 16));
+            lblContactId.setForeground(Color.GREEN);
+            lblContactId.setBorder(new EmptyBorder(20, 50, 10, 0));
             lblContactId.setHorizontalAlignment(JLabel.LEFT);
             panel1.add(lblContactId);
 
         add(panel1, BorderLayout.NORTH);
 
-        JPanel panel2 = new JPanel(new GridLayout(5, 2, 5, 5));
+        JPanel panel2 = new JPanel(new GridLayout(5, 2, 5, 20));
+        panel2.setBorder(new EmptyBorder(10, 60, 10, 60));
 
             JLabel lblName = new JLabel("Name");
             lblName.setFont(new Font("Arial", Font.BOLD, 14));
@@ -99,6 +107,7 @@ class AddContacts extends JFrame{
         add(panel2, BorderLayout.CENTER);
 
         JPanel panel3 = new JPanel(new GridLayout(2,1,5,5));
+        panel3.setBorder(new EmptyBorder(10, 0, 10, 60));
 
             JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
@@ -119,6 +128,7 @@ class AddContacts extends JFrame{
                 btnBackToHome = new JButton("Back to Home");
                 btnBackToHome.setFont(new Font("Arial", Font.BOLD, 14));
                 btnBackToHome.setForeground(Color.BLUE);
+                btnBackToHome.setPreferredSize(new Dimension(148, 30));
                 panel5.add(btnBackToHome);
 
             panel3.add(panel5);
