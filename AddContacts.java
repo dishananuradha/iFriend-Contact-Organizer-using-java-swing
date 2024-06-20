@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.*;
 
 import java.awt.*;
 
@@ -54,6 +55,21 @@ class AddContacts extends JFrame{
             txtName.setFont(new Font("Arial", Font.PLAIN, 14));
             txtName.setForeground(Color.BLACK);
             txtName.setHorizontalAlignment(JTextField.LEFT);
+            txtName.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent evt){
+                    String name = txtName.getText();
+                    while(!ContactController.isValidName(name)){
+                        int option = JOptionPane.showConfirmDialog(AddContacts.this, "Name cannot be empty. Do you want to input name again?", "Invalid Name", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if(option == JOptionPane.YES_OPTION){
+                            txtName.requestFocus();
+                        }else{
+                            ContactController.idCount--;
+                            dispose();
+                        }
+                        name = txtName.getText();
+                    }
+                }
+            });
             panel2.add(txtName);
 
             JLabel lblContactNumber = new JLabel("Contact Number");
@@ -66,6 +82,34 @@ class AddContacts extends JFrame{
             txtContactNumber.setFont(new Font("Arial", Font.PLAIN, 14));
             txtContactNumber.setForeground(Color.BLACK);
             txtContactNumber.setHorizontalAlignment(JTextField.LEFT);
+            txtContactNumber.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent evt){
+                    String phoneNumber = txtContactNumber.getText();
+                    while(!ContactController.isValidPhoneNumber(phoneNumber)){
+                        int option = JOptionPane.showConfirmDialog(AddContacts.this, "Invalid phone number. Do you want to input phone number again?", "Invalid Phone Number", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if(option == JOptionPane.YES_OPTION){
+                            txtContactNumber.setText("");
+                            txtContactNumber.requestFocus();
+                        }else{
+                            ContactController.idCount--;
+                            dispose();
+                        }
+                        phoneNumber = txtContactNumber.getText();
+                    }
+
+                    while(ContactController.isDuplicate(phoneNumber)){
+                        int option = JOptionPane.showConfirmDialog(AddContacts.this, "Phone number already exists. Do you want to input phone number again?", "Duplicate Phone Number", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if(option == JOptionPane.YES_OPTION){
+                            txtContactNumber.setText("");
+                            txtContactNumber.requestFocus();
+                        }else{
+                            ContactController.idCount--;
+                            dispose();
+                        }
+                        phoneNumber = txtContactNumber.getText();
+                    }
+                }
+            });
             panel2.add(txtContactNumber);
 
             JLabel lblCompanyName = new JLabel("Company Name");
