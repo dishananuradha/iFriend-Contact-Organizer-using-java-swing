@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 class AddContacts extends JFrame{
+    private JTextField txtContactId;
     private JTextField txtName;
     private JTextField txtContactNumber;
     private JTextField txtCompanyName;
@@ -33,17 +34,24 @@ class AddContacts extends JFrame{
             lblTitle.setHorizontalAlignment(JLabel.CENTER);
             panel1.add(lblTitle);
 
-            JLabel lblContactId = new JLabel("Contact Id - " + ContactController.generateContactId());
-            lblContactId.setFont(new Font("Arial", Font.BOLD, 16));
-            lblContactId.setForeground(Color.GREEN);
-            lblContactId.setBorder(new EmptyBorder(20, 50, 10, 0));
-            lblContactId.setHorizontalAlignment(JLabel.LEFT);
-            panel1.add(lblContactId);
-
         add(panel1, BorderLayout.NORTH);
 
-        JPanel panel2 = new JPanel(new GridLayout(5, 2, 5, 20));
+        JPanel panel2 = new JPanel(new GridLayout(6, 2, 5, 20));
         panel2.setBorder(new EmptyBorder(10, 60, 10, 60));
+
+            JLabel lblContactId = new JLabel("Contact Id");
+            lblContactId.setFont(new Font("Arial", Font.BOLD, 14));
+            lblContactId.setForeground(Color.BLUE);
+            lblContactId.setHorizontalAlignment(JLabel.LEFT);
+            panel2.add(lblContactId);
+
+            txtContactId = new JTextField();
+            txtContactId.setFont(new Font("Arial", Font.PLAIN, 14));
+            txtContactId.setForeground(Color.BLACK);
+            txtContactId.setHorizontalAlignment(JTextField.LEFT);
+            txtContactId.setText(ContactController.generateContactId());
+            txtContactId.setEditable(false);
+            panel2.add(txtContactId);
 
             JLabel lblName = new JLabel("Name");
             lblName.setFont(new Font("Arial", Font.BOLD, 14));
@@ -283,11 +291,56 @@ class AddContacts extends JFrame{
                 btnAdd = new JButton("Add");
                 btnAdd.setFont(new Font("Arial", Font.BOLD, 14));
                 btnAdd.setForeground(Color.BLUE);
+                btnAdd.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        String contactId = txtContactId.getText();
+                        String name = txtName.getText();
+                        String phoneNumber = txtContactNumber.getText();
+                        String companyName = txtCompanyName.getText();
+                        double salary = Double.parseDouble(txtSalary.getText());
+                        String birthDay = txtBirthDay.getText();
+
+                        Contact contact = new Contact();
+                        contact.setContactId(contactId);
+                        contact.setName(name);
+                        contact.setPhoneNumber(phoneNumber);
+                        contact.setCompanyName(companyName);
+                        contact.setSalary(salary);
+                        contact.setBirthDay(birthDay);
+
+                        ContactController.addContact(contact);
+
+                        JOptionPane.showMessageDialog(
+                            AddContacts.this,
+                            "Contact added successfully",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        
+                        txtContactId.setText(ContactController.generateContactId());
+                        txtName.setText("");
+                        txtContactNumber.setText("");
+                        txtCompanyName.setText("");
+                        txtSalary.setText("");
+                        txtBirthDay.setText("");
+                    }
+                });
                 panel4.add(btnAdd);
 
                 btnCancel = new JButton("Cancel");
                 btnCancel.setFont(new Font("Arial", Font.BOLD, 14));
                 btnCancel.setForeground(Color.BLUE);
+                btnCancel.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        ContactController.idCount--;
+                        txtContactId.setText(ContactController.generateContactId());
+                        txtName.setText("");
+                        txtContactNumber.setText("");
+                        txtCompanyName.setText("");
+                        txtSalary.setText("");
+                        txtBirthDay.setText("");
+                    }
+                });
                 panel4.add(btnCancel);
 
             panel3.add(panel4);
@@ -298,6 +351,17 @@ class AddContacts extends JFrame{
                 btnBackToHome.setFont(new Font("Arial", Font.BOLD, 14));
                 btnBackToHome.setForeground(Color.BLUE);
                 btnBackToHome.setPreferredSize(new Dimension(148, 30));
+                btnBackToHome.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        ContactController.idCount--;
+                        txtName.setText("");
+                        txtContactNumber.setText("");
+                        txtCompanyName.setText("");
+                        txtSalary.setText("");
+                        txtBirthDay.setText("");
+                        dispose();
+                    }
+                });
                 panel5.add(btnBackToHome);
 
             panel3.add(panel5);
