@@ -103,7 +103,7 @@ class ContactList{
 	}
     
     //-------------------sort by name----------------------//
-    public void sortByName(String str){
+    public void sortByName(){
 		Contact[] contactArray = toArray();
         for(int i = 0; i < contactArray.length - 1; i++) {
             for(int j = 0; j < contactArray.length - 1 - i; j++){
@@ -115,11 +115,10 @@ class ContactList{
                 }
             }
         }
-        printTable(str, contactArray);
     }
     
     //------------------sort by salary----------------------//
-    public void sortBySalary(String str){
+    public void sortBySalary(){
 		Contact[] contactArray = toArray();
         for(int i = 0; i < contactArray.length - 1; i++) {
             for(int j = 0; j < contactArray.length - 1 - i; j++){
@@ -131,11 +130,10 @@ class ContactList{
                 }
             }
         }
-        printTable(str, contactArray);
     }
 
 	//-----------------sort by birthday----------------------//
-    public void sortByBirthday(String str){
+    public void sortByBirthday(){
 		Contact[] contactArray = toArray();
         for(int i = 0; i < contactArray.length - 1; i++) {
             for(int j = 0; j < contactArray.length - 1 - i; j++){
@@ -147,34 +145,5 @@ class ContactList{
                 }
             }
         }
-        printTable(str, contactArray);
     }
-    
-	//----------------print contact info-------------------//
-    public void printContactInfo(String query){
-		Contact contact = get(query);
-		
-		System.out.printf("\n\n\tContact ID\t\t: %s", contact.getContactId());
-		System.out.printf("\n\tName\t\t\t: %s", contact.getName());
-		System.out.printf("\n\tPhone Number\t\t: %s", contact.getPhoneNumber());
-		System.out.printf("\n\tCompany Name\t\t: %s", contact.getCompanyName());
-		System.out.printf("\n\tSalary\t\t\t: %s", contact.getSalary());
-		System.out.printf("\n\tB'Day(YYYY-MM-DD)\t: %s", contact.getBirthDay());
-	}
-	
-	//----------------print contacts table-------------------//
-	private void printTable(String str, Contact[] contactArray){
-		System.out.println("                  +-------------------------------------------------------------+");
-		System.out.printf("                  |\t\t\tList contact by %s\t\t\t|\n", str);
-		System.out.println("                  +-------------------------------------------------------------+");
-		System.out.println();
-		System.out.println(" +-----------------------------------------------------------------------------------------------+");
-		System.out.println(" | Contact ID  |     Name     |  Phone Number  |    Company    |     Salary     |    Birthday    |");
-		System.out.println(" +-----------------------------------------------------------------------------------------------+");
-
-		for(int i = 0; i < contactArray.length; i++){
-			System.out.printf(" | %-12s| %-13s|   %-13s|  %-13s|%,13.2f   |  %-14s|\n", contactArray[i].getContactId(), contactArray[i].getName(), contactArray[i].getPhoneNumber(), contactArray[i].getCompanyName(), contactArray[i].getSalary(), contactArray[i].getBirthDay());	
-		}
-		System.out.println(" +-----------------------------------------------------------------------------------------------+");
-	}
 }
