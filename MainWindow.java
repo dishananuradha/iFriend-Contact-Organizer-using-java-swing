@@ -13,6 +13,7 @@ class MainWindow extends JFrame{
 	private JButton btnExit;
 
 	private AddContacts addContacts;
+	private UpdateContacts updateContacts;
 	
 	public MainWindow(){
 		setTitle("iFriend Contact Manager");
@@ -64,6 +65,14 @@ class MainWindow extends JFrame{
 				btnUpdateContact.setFont(new Font("Arial", Font.BOLD, 14));
 				btnUpdateContact.setForeground(Color.BLUE);
 				btnUpdateContact.setHorizontalAlignment(JButton.CENTER);
+				btnUpdateContact.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent evt){
+						if(updateContacts==null){
+							updateContacts=new UpdateContacts(MainWindow.this);
+						}
+						updateContacts.setVisible(true);
+					}
+				});
 				buttonPanel.add(btnUpdateContact);
 
 				btnSearchContact = new JButton("Search Contact");
