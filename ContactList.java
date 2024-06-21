@@ -56,6 +56,17 @@ class ContactList{
 		}
 		return false;
 	}
+
+	//-------------get contact using index---------------//
+	public Contact get(int index){
+		Node temp = start;
+		int indexCount = 0;
+		while(indexCount < index){
+			indexCount++;
+			temp = temp.getNext();
+		}
+		return temp.getContact();  
+	}
 	
 	//-------------get contact using query---------------//
 	public Contact get(String query){
