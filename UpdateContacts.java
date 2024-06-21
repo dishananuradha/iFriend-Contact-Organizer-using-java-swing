@@ -18,7 +18,7 @@ class UpdateContacts extends JFrame{
     private JButton btnBackToHome;
 
     public UpdateContacts(JFrame parent){
-        setTitle("Add Contact");
+        setTitle("Update Contact");
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         int xOffset = -400;
@@ -55,7 +55,7 @@ class UpdateContacts extends JFrame{
                 btnSearch.setForeground(Color.BLUE);
                 btnSearch.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        String query = txtSearch.getText();
+                        String query = txtSearch.getText().toLowerCase();
                         int index = ContactController.searchContact(query);
                         if (index == -1) {
                             JOptionPane.showMessageDialog(
@@ -345,12 +345,12 @@ class UpdateContacts extends JFrame{
                 btnUpdate.setForeground(Color.BLUE);
                 btnUpdate.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        String name = txtName.getText();
+                        String name = txtName.getText().toLowerCase();
                         String phoneNumber = txtContactNumber.getText();
                         String companyName = txtCompanyName.getText();
                         double salary = Double.parseDouble(txtSalary.getText());
 
-                        String query = txtSearch.getText();
+                        String query = txtSearch.getText().toLowerCase();
                         Contact contact = ContactController.getContact(query);
                         contact.setName(name);
                         contact.setPhoneNumber(phoneNumber);

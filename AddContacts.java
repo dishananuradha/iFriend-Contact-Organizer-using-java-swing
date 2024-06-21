@@ -64,7 +64,7 @@ class AddContacts extends JFrame{
             txtName.setHorizontalAlignment(JTextField.LEFT);
             txtName.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    String name = txtName.getText();
+                    String name = txtName.getText().toLowerCase();
                     if (ContactController.isValidName(name)) {
                         txtContactNumber.requestFocus(); // Move focus to the next text field
                     } else {
@@ -293,7 +293,7 @@ class AddContacts extends JFrame{
                 btnAdd.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         String contactId = txtContactId.getText();
-                        String name = txtName.getText();
+                        String name = txtName.getText().toLowerCase();
                         String phoneNumber = txtContactNumber.getText();
                         String companyName = txtCompanyName.getText();
                         double salary = Double.parseDouble(txtSalary.getText());
