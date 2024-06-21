@@ -1,7 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.event.*;
 
 class MainWindow extends JFrame{
@@ -16,6 +15,7 @@ class MainWindow extends JFrame{
 	private UpdateContacts updateContacts;
 	private SearchContacts searchContacts;
 	private DeleteContacts deleteContacts;
+	private ViewContacts viewContacts;
 	
 	public MainWindow(){
 		setTitle("iFriend Contact Manager");
@@ -109,6 +109,14 @@ class MainWindow extends JFrame{
 				btnViewContacts.setFont(new Font("Arial", Font.BOLD, 14));
 				btnViewContacts.setForeground(Color.BLUE);
 				btnViewContacts.setHorizontalAlignment(JButton.CENTER);
+				btnViewContacts.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent evt){
+						if(viewContacts==null){
+							viewContacts=new ViewContacts(MainWindow.this);
+						}
+						viewContacts.setVisible(true);
+					}
+				});
 				buttonPanel.add(btnViewContacts);
 
 			mainPanel.add(buttonPanel, BorderLayout.CENTER);
