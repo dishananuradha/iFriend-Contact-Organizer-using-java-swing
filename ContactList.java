@@ -57,7 +57,7 @@ class ContactList{
 		return false;
 	}
 
-	//-------------get contact using index---------------//
+	/* //-------------get contact using index---------------//
 	public Contact get(int index){
 		Node temp = start;
 		int indexCount = 0;
@@ -66,7 +66,7 @@ class ContactList{
 			temp = temp.getNext();
 		}
 		return temp.getContact();  
-	}
+	} */
 	
 	//-------------get contact using query---------------//
 	public Contact get(String query){
@@ -81,7 +81,7 @@ class ContactList{
 	}
 	
 	//-------------get how many nodes are there---------------//
-	public int size(){
+	private int size(){
 		int indexCount = 0;
 		Node temp = start;
 		while(temp != null){
@@ -103,7 +103,7 @@ class ContactList{
 	}
     
     //-------------------sort by name----------------------//
-    public void sortByName(){
+    public Contact[] sortByName(){
 		Contact[] contactArray = toArray();
         for(int i = 0; i < contactArray.length - 1; i++) {
             for(int j = 0; j < contactArray.length - 1 - i; j++){
@@ -115,6 +115,7 @@ class ContactList{
                 }
             }
         }
+		return contactArray;
     }
     
     //------------------sort by salary----------------------//
