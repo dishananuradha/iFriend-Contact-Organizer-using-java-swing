@@ -27,12 +27,12 @@ class ViewContacts extends JFrame{
             lblHome.setFont(new Font("Arial", Font.BOLD, 24));
             lblHome.setForeground(Color.BLUE);
             lblHome.setHorizontalAlignment(JLabel.CENTER);
-            lblHome.setBorder(new EmptyBorder(10, 0, 10, 0));
+            lblHome.setBorder(new EmptyBorder(10, 0, 50, 0));
 
         add(lblHome, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(3, 1, 10, 10));
+        buttonPanel.setLayout(new GridLayout(3, 1, 10, 50));
         buttonPanel.setBorder(new EmptyBorder(0, 60, 0, 60));
 
             btnListByName = new JButton("List By Name");
@@ -81,7 +81,7 @@ class ViewContacts extends JFrame{
 
         JPanel cancelPanel = new JPanel();
         cancelPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        cancelPanel.setBorder(new EmptyBorder(10, 0, 10, 60));
+        cancelPanel.setBorder(new EmptyBorder(50, 0, 10, 60));
 
             btnCancel = new JButton("Cancel");
             btnCancel.setFont(new Font("Arial", Font.BOLD, 14));
