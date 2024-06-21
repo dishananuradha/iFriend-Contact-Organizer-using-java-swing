@@ -26,6 +26,16 @@ class ContactController {
         contactList.delete(query);
     }
 
+    //-------------------get how many nodes are there----------------------//
+    public static int size() {
+        return contactList.size();
+    }
+
+    //-------------------get contact using index----------------------//
+    public static Contact get(int index) {
+        return contactList.get(index);
+    }
+
     //-------------------check validity of the name----------------------//
     public static boolean isValidName(String name) {
 		return name.length() != 0; 
