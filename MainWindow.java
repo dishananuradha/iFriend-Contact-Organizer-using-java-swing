@@ -15,6 +15,7 @@ class MainWindow extends JFrame{
 	private AddContacts addContacts;
 	private UpdateContacts updateContacts;
 	private SearchContacts searchContacts;
+	private DeleteContacts deleteContacts;
 	
 	public MainWindow(){
 		setTitle("iFriend Contact Manager");
@@ -96,10 +97,10 @@ class MainWindow extends JFrame{
 				btnDeleteContact.setHorizontalAlignment(JButton.CENTER);
 				btnDeleteContact.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent evt){
-						if(searchContacts==null){
-							searchContacts=new SearchContacts(MainWindow.this);
+						if(deleteContacts==null){
+							deleteContacts=new DeleteContacts(MainWindow.this);
 						}
-						searchContacts.setVisible(true);
+						deleteContacts.setVisible(true);
 					}
 				});
 				buttonPanel.add(btnDeleteContact);
