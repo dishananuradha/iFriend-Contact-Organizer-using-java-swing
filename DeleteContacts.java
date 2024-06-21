@@ -3,7 +3,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
 import java.awt.*;
 
-class SearchContacts extends JFrame{
+class DeleteContacts extends JFrame{
     private JTextField txtSearch;
     private JTextField txtContactId;
     private JTextField txtName;
@@ -13,10 +13,12 @@ class SearchContacts extends JFrame{
     private JTextField txtBirthDay;
 
     private JButton btnSearch;
+    private JButton btnDelete;
+    private JButton btnCancel;
     private JButton btnBackToHome;
 
-    public SearchContacts(JFrame parent){
-        setTitle("Search Contact");
+    public DeleteContacts(JFrame parent){
+        setTitle("Delete Contact");
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         int xOffset = -400;
@@ -27,7 +29,7 @@ class SearchContacts extends JFrame{
         JPanel titlePanel = new JPanel();
         titlePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-            JLabel lblTitle = new JLabel("Search Contact");
+            JLabel lblTitle = new JLabel("Delete Contact");
             lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
             lblTitle.setForeground(Color.BLUE);
             lblTitle.setHorizontalAlignment(JLabel.CENTER);
@@ -57,7 +59,7 @@ class SearchContacts extends JFrame{
                         int index = ContactController.searchContact(query);
                         if (index == -1) {
                             JOptionPane.showMessageDialog(
-                                SearchContacts.this,
+                                DeleteContacts.this,
                                 "Contact not found",
                                 "Not Found",
                                 JOptionPane.ERROR_MESSAGE
@@ -162,27 +164,76 @@ class SearchContacts extends JFrame{
 
         add(panel1, BorderLayout.CENTER);
 
-        JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        panel4.setBorder(new EmptyBorder(10, 0, 10, 70));
+        JPanel panel2 = new JPanel(new GridLayout(2,1,5,5));
+        panel2.setBorder(new EmptyBorder(10, 0, 10, 70));
 
-            btnBackToHome = new JButton("Back to Home");
-            btnBackToHome.setFont(new Font("Arial", Font.BOLD, 14));
-            btnBackToHome.setForeground(Color.BLUE);
-            btnBackToHome.setPreferredSize(new Dimension(148, 30));
-            btnBackToHome.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    txtSearch.setText("");
-                    txtContactId.setText("");
-                    txtName.setText("");
-                    txtContactNumber.setText("");
-                    txtCompanyName.setText("");
-                    txtSalary.setText("");
-                    txtBirthDay.setText("");
-                    dispose();
-                }
-            });
-            panel4.add(btnBackToHome);
+            JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        add(panel4, BorderLayout.SOUTH);
+                btnDelete = new JButton("Delete");
+                btnDelete.setFont(new Font("Arial", Font.BOLD, 14));
+                btnDelete.setForeground(Color.BLUE);
+                btnDelete.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        String query = txtSearch.getText().toLowerCase();
+                        ContactController.deleteContact(query);
+
+                        JOptionPane.showMessageDialog(
+                            DeleteContacts.this,
+                            "Contact deleted successfully",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        
+                        txtSearch.setText("");
+                        txtContactId.setText("");
+                        txtName.setText("");
+                        txtContactNumber.setText("");
+                        txtCompanyName.setText("");
+                        txtSalary.setText("");
+                        txtBirthDay.setText("");
+                    }
+                });
+                panel3.add(btnDelete);
+
+                btnCancel = new JButton("Cancel");
+                btnCancel.setFont(new Font("Arial", Font.BOLD, 14));
+                btnCancel.setForeground(Color.BLUE);
+                btnCancel.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        txtContactId.setText("");
+                        txtName.setText("");
+                        txtContactNumber.setText("");
+                        txtCompanyName.setText("");
+                        txtSalary.setText("");
+                        txtBirthDay.setText("");
+                    }
+                });
+                panel3.add(btnCancel);
+
+            panel2.add(panel3);
+
+            JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+                btnBackToHome = new JButton("Back to Home");
+                btnBackToHome.setFont(new Font("Arial", Font.BOLD, 14));
+                btnBackToHome.setForeground(Color.BLUE);
+                btnBackToHome.setPreferredSize(new Dimension(148, 30));
+                btnBackToHome.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        txtSearch.setText("");
+                        txtContactId.setText("");
+                        txtName.setText("");
+                        txtContactNumber.setText("");
+                        txtCompanyName.setText("");
+                        txtSalary.setText("");
+                        txtBirthDay.setText("");
+                        dispose();
+                    }
+                });
+                panel4.add(btnBackToHome);
+
+            panel2.add(panel4);
+
+        add(panel2, BorderLayout.SOUTH);
     }
 }

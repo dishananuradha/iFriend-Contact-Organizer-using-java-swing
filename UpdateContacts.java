@@ -205,7 +205,6 @@ class UpdateContacts extends JFrame{
                     }
                 });
                 contactPanel.add(txtContactNumber);
-            
 
                 JLabel lblCompanyName = new JLabel("Company Name");
                 lblCompanyName.setFont(new Font("Arial", Font.BOLD, 14));
