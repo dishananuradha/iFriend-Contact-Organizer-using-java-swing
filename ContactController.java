@@ -31,6 +31,16 @@ class ContactController {
         return contactList.sortByName();
     }
 
+    //-------------------sort contact by salary----------------------//
+    public static Contact[] sortBySalary() {
+        return contactList.sortBySalary();
+    }
+
+    //-------------------sort contact by birthday----------------------//
+    public static Contact[] sortByBirthday() {
+        return contactList.sortByBirthday();
+    }
+
     //-------------------check validity of the name----------------------//
     public static boolean isValidName(String name) {
 		return name.length() != 0; 
