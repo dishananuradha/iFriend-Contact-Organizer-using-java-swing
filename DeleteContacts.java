@@ -61,7 +61,7 @@ class DeleteContacts extends JFrame{
                             JOptionPane.showMessageDialog(
                                 DeleteContacts.this,
                                 "Contact not found",
-                                "Not Found",
+                                "Warning",
                                 JOptionPane.ERROR_MESSAGE
                             );
                             return;

@@ -59,7 +59,7 @@ class SearchContacts extends JFrame{
                             JOptionPane.showMessageDialog(
                                 SearchContacts.this,
                                 "Contact not found",
-                                "Not Found",
+                                "Warning",
                                 JOptionPane.ERROR_MESSAGE
                             );
                             return;

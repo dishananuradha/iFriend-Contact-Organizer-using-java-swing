@@ -61,7 +61,7 @@ class UpdateContacts extends JFrame{
                             JOptionPane.showMessageDialog(
                                 UpdateContacts.this,
                                 "Contact not found",
-                                "Not Found",
+                                "Warning",
                                 JOptionPane.ERROR_MESSAGE
                             );
                             return;
@@ -113,8 +113,8 @@ class UpdateContacts extends JFrame{
                         } else {
                             int option = JOptionPane.showConfirmDialog(
                                 UpdateContacts.this,
-                                "Name cannot be empty or invalid. Do you want to input the name again?",
-                                "Invalid Name",
+                                "Name cannot be empty. Do you want to input the name again?",
+                                "Warning",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.WARNING_MESSAGE
                             );
@@ -154,8 +154,8 @@ class UpdateContacts extends JFrame{
                         if (!ContactController.isValidPhoneNumber(phoneNumber)) {
                             int option = JOptionPane.showConfirmDialog(
                                 UpdateContacts.this,
-                                "Invalid phone number. Do you want to input phone number again?",
-                                "Invalid Phone Number",
+                                "Invalid or empty phone number. Do you want to input phone number again?",
+                                "Warning",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.WARNING_MESSAGE
                             );
@@ -180,7 +180,7 @@ class UpdateContacts extends JFrame{
                             int option = JOptionPane.showConfirmDialog(
                                 UpdateContacts.this,
                                 "Phone number is a duplicate. Do you want to input phone number again?",
-                                "Duplicate Phone Number",
+                                "Warning",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.WARNING_MESSAGE
                             );
@@ -225,7 +225,7 @@ class UpdateContacts extends JFrame{
                             int option = JOptionPane.showConfirmDialog(
                                 UpdateContacts.this,
                                 "Company name cannot be empty. Do you want to input the company name again?",
-                                "Invalid Company Name",
+                                "Warning",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.WARNING_MESSAGE
                             );
@@ -266,7 +266,7 @@ class UpdateContacts extends JFrame{
                             int option = JOptionPane.showConfirmDialog(
                                 UpdateContacts.this,
                                 "Salary cannot be negative. Do you want to input salary again?",
-                                "Invalid Salary",
+                                "Warning",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.WARNING_MESSAGE
                             );
@@ -308,7 +308,7 @@ class UpdateContacts extends JFrame{
                             int option = JOptionPane.showConfirmDialog(
                                 UpdateContacts.this,
                                 "Invalid birth day. Do you want to input birth day again?",
-                                "Invalid Birth Day",
+                                "Warning",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.WARNING_MESSAGE
                             );
