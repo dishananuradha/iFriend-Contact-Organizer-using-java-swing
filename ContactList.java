@@ -70,7 +70,7 @@ class ContactList{
 	}
 	
 	//-------------get how many nodes are there---------------//
-	private int size(){
+	public int size(){
 		int indexCount = 0;
 		Node temp = start;
 		while(temp != null){
