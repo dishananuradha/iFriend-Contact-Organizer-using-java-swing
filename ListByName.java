@@ -39,9 +39,9 @@ class ListByName extends JFrame{
             btnReload.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     dtm.setRowCount(0);
-                    ContactController.sortByName();
-                    for (int i = 0; i < ContactController.size(); i++) {
-                        Contact contact = ContactController.get(i);
+                    Contact[] contacts = ContactController.sortByName();
+                    for (int i = 0; i < contacts.length; i++) {
+                        Contact contact = contacts[i];
                         Object[] row = {contact.getContactId(), contact.getName(), contact.getPhoneNumber(), contact.getCompanyName(), contact.getSalary(), contact.getBirthDay()};
                         dtm.addRow(row);
                     }
