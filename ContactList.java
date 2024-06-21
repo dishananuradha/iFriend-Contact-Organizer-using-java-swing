@@ -108,7 +108,7 @@ class ContactList{
     }
     
     //------------------sort by salary----------------------//
-    public void sortBySalary(){
+    public Contact[] sortBySalary(){
 		Contact[] contactArray = toArray();
         for(int i = 0; i < contactArray.length - 1; i++) {
             for(int j = 0; j < contactArray.length - 1 - i; j++){
@@ -120,10 +120,11 @@ class ContactList{
                 }
             }
         }
+		return contactArray;
     }
 
 	//-----------------sort by birthday----------------------//
-    public void sortByBirthday(){
+    public Contact[] sortByBirthday(){
 		Contact[] contactArray = toArray();
         for(int i = 0; i < contactArray.length - 1; i++) {
             for(int j = 0; j < contactArray.length - 1 - i; j++){
@@ -135,5 +136,6 @@ class ContactList{
                 }
             }
         }
+		return contactArray;
     }
 }
