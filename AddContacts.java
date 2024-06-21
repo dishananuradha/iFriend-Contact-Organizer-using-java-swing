@@ -178,7 +178,7 @@ class AddContacts extends JFrame{
                     } else {
                         int option = JOptionPane.showConfirmDialog(
                             AddContacts.this,
-                            "Company name cannot be empty or invalid. Do you want to input the company name again?",
+                            "Company name cannot be empty. Do you want to input the company name again?",
                             "Invalid Company Name",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.WARNING_MESSAGE
@@ -331,8 +331,6 @@ class AddContacts extends JFrame{
                 btnCancel.setForeground(Color.BLUE);
                 btnCancel.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        ContactController.idCount--;
-                        txtContactId.setText(ContactController.generateContactId());
                         txtName.setText("");
                         txtContactNumber.setText("");
                         txtCompanyName.setText("");
