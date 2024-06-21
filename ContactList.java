@@ -30,7 +30,7 @@ class ContactList{
 	}
 	
 	//-------------------delete element----------------------//
-    public void deleteElement(String query) {
+    public void delete(String query) {
 		int index = search(query);
 		if(index == 0){
 			start=start.getNext();
