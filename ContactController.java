@@ -21,6 +21,11 @@ class ContactController {
         return contactList.search(query);
     }
 
+    //-------------------delete contact----------------------//
+    public static void deleteContact(String query) {
+        contactList.delete(query);
+    }
+
     //-------------------check validity of the name----------------------//
     public static boolean isValidName(String name) {
 		return name.length() != 0; 
