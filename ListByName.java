@@ -53,7 +53,6 @@ class ListByName extends JFrame{
 
         String[] columnNames = {"Contact ID", "Name", "Phone Number", "Company Name", "Salary", "Birth Day"};
         dtm = new DefaultTableModel(columnNames, 10);
-
         tblCustomerDetails = new JTable(dtm);
         JScrollPane scrollPane = new JScrollPane(tblCustomerDetails);
         add(scrollPane, BorderLayout.CENTER);
