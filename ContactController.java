@@ -26,7 +26,7 @@ class ContactController {
         contactList.delete(query);
     }
 
-    //-------------------get how many nodes are there----------------------//
+    /* //-------------------get how many nodes are there----------------------//
     public static int size() {
         return contactList.size();
     }
@@ -34,11 +34,11 @@ class ContactController {
     //-------------------get contact using index----------------------//
     public static Contact get(int index) {
         return contactList.get(index);
-    }
+    } */
 
     //-------------------sort contact by name----------------------//
-    public static void sortByName() {
-        contactList.sortByName();
+    public static Contact[] sortByName() {
+        return contactList.sortByName();
     }
 
     //-------------------check validity of the name----------------------//
