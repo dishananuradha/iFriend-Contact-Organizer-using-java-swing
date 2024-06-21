@@ -9,7 +9,17 @@ class ContactController {
     //-------------------add contact----------------------//
     public static void addContact(Contact contact) {
         contactList.add(contact);
-    }        
+    }
+    
+    //-------------------get contact----------------------//
+    public static Contact getContact(String query) {
+        return contactList.get(query);
+    }
+
+    //-------------------search contact----------------------//
+    public static int searchContact(String query) {
+        return contactList.search(query);
+    }
 
     //-------------------check validity of the name----------------------//
     public static boolean isValidName(String name) {
