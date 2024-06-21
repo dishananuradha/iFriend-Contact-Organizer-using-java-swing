@@ -94,6 +94,14 @@ class MainWindow extends JFrame{
 				btnDeleteContact.setFont(new Font("Arial", Font.BOLD, 14));
 				btnDeleteContact.setForeground(Color.BLUE);
 				btnDeleteContact.setHorizontalAlignment(JButton.CENTER);
+				btnDeleteContact.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent evt){
+						if(searchContacts==null){
+							searchContacts=new SearchContacts(MainWindow.this);
+						}
+						searchContacts.setVisible(true);
+					}
+				});
 				buttonPanel.add(btnDeleteContact);
 
 				btnViewContacts = new JButton("View Contacts");
