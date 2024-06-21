@@ -36,6 +36,11 @@ class ContactController {
         return contactList.get(index);
     }
 
+    //-------------------sort contact by name----------------------//
+    public static void sortByName() {
+        contactList.sortByName();
+    }
+
     //-------------------check validity of the name----------------------//
     public static boolean isValidName(String name) {
 		return name.length() != 0; 
