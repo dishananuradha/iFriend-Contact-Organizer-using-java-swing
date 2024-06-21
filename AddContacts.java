@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
-
 import java.awt.*;
 
 class AddContacts extends JFrame{
@@ -25,7 +24,7 @@ class AddContacts extends JFrame{
         Point parentLocation = parent.getLocation();
         setLocation(parentLocation.x + parent.getWidth() + xOffset, parentLocation.y + yOffset);
 
-        JPanel panel1 = new JPanel(new GridLayout(2, 1, 5, 5));
+        JPanel panel1 = new JPanel();
         panel1.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             JLabel lblTitle = new JLabel("Add Contact");
