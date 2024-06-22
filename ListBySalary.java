@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 class ListBySalary extends JFrame{
     private JButton btnReload;
-	private JTable tblCustomerDetails;
+	private JTable tblContactDetails;
 	private DefaultTableModel dtm;
 
     public ListBySalary(JFrame parent){
@@ -53,8 +53,8 @@ class ListBySalary extends JFrame{
 
         String[] columnNames = {"Contact ID", "Name", "Phone Number", "Company Name", "Salary", "Birth Day"};
         dtm = new DefaultTableModel(columnNames, 10);
-        tblCustomerDetails = new JTable(dtm);
-        JScrollPane scrollPane = new JScrollPane(tblCustomerDetails);
+        tblContactDetails = new JTable(dtm);
+        JScrollPane scrollPane = new JScrollPane(tblContactDetails);
         add(scrollPane, BorderLayout.CENTER);
     }
 }
